@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 ปรึกษาแผนกิจกรรมสุดแสนสนุก! 🎉</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Keyframe Animations */
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(3deg);
+            }
+        }
+        
+        @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-7px);
+            }
+        }
+        
+        @keyframes sparkle {
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.3);
+            }
+        }
+        
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        @keyframes shake {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            75% {
+                transform: translateX(5px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Mali', cursive;
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #ffd1dc, #e0c3fc, #9bb5ff, #a8edea, #fed6e3, #ffeaa7);
+            background-size: 400% 400%;
+            animation: gradientMove 6s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Floating emojis background */
+        
+        body::before {
+            content: '🌟 🎈 🦄 🌈 🎀 💖 ✨ 🌸 🎭 🎨 🎪 🎊';
+            position: fixed;
+            top: -100px;
+            left: -100px;
+            right: -100px;
+            bottom: -100px;
+            font-size: 2.5em;
+            opacity: 0.15;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+            z-index: 1;
+            word-spacing: 150px;
+            line-height: 4;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        /* Header */
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 192, 203, 0.8));
+            border-radius: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '🎉 ✨ 🎊 ✨ 🎉';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8em;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            color: #ff69b4;
+            text-shadow: 3px 3px #ffe4e1, 6px 6px rgba(255, 105, 180, 0.3);
+            animation: bounce 3s ease-in-out infinite;
+            margin: 20px 0 10px 0;
+        }
+        
+        .header p {
+            font-size: 1.4em;
+            color: #6a5acd;
+            font-weight: 500;
+        }
+        /* Main content grid */
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        /* Consultation form */
+        
+        .consultation-form {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 248, 255, 0.9));
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 3px solid rgba(255, 105, 180, 0.3);
+        }
+        
+        .consultation-form::before {
+            content: '📝 มาปรึกษากันเถอะ! 🤗';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff69b4, #ffd700);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1em;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #4682b4;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            font-family: 'Mali', cursive;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #ff69b4;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+            transform: scale(1.02);
+            outline: none;
+        }
+        
+        .emoji-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .emoji-btn {
+            background: linear-gradient(45deg, #ffd1dc, #e0c3fc);
+            border: 2px solid #ff69b4;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .emoji-btn:hover {
+            transform: scale(1.2) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.4);
+        }
+        
+        .emoji-btn.active {
+            background: linear-gradient(45deg, #ff69b4, #ffd700);
+            transform: scale(1.1);
+            animation: pulse 1s ease-in-out infinite;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #32cd32, #00fa9a);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            font-family: 'Mali', cursive;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(50, 205, 50, 0.4);
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .submit-btn::before {
+            content: '🚀';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2em;
+        }
+        /* Fun activities sidebar */
+        
+        .activities-sidebar {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 248, 220, 0.9));
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 3px solid rgba(255, 215, 0, 0.5);
+        }
+        
+        .activities-sidebar h3 {
+            color: #ffa500;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .activity-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .activity-card:hover {
+            transform: translateX(10px) scale(1.05);
+            border-color: #ff69b4;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+        }
+        
+        .activity-card h4 {
+            color: #4682b4;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+        
+        .activity-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        /* Tips section */
+        
+        .tips-section {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.9), rgba(255, 192, 203, 0.9));
+            border-radius: 25px;
+            padding: 30px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tips-section::before {
+            content: '💡 เคล็ดลับดีๆ สำหรับคุณ! ✨';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff69b4, #ffd700);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1em;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .tip-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tip-card .emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .tip-card h4 {
+            color: #ff69b4;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .tip-card p {
+            color: #666;
+            font-size: 0.95em;
+        }
+        /* Responsive design */
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2.5em;
+            }
+            .consultation-form,
+            .activities-sidebar {
+                padding: 25px;
+            }
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            body::before {
+                font-size: 1.5em;
+                word-spacing: 80px;
+                line-height: 3;
+            }
+        }
+        /* Interactive elements */
+        
+        .floating-chat {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #ff69b4, #ffd700);
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 2em;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+            animation: bounce 2s ease-in-out infinite;
+            z-index: 1000;
+        }
+        
+        .floating-chat:hover {
+            transform: scale(1.2);
+            animation: shake 0.5s ease-in-out;
+        }
+        /* Success message */
+        
+        .success-message {
+            background: linear-gradient(45deg, #32cd32, #90ee90);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: none;
+            animation: bounce 1s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎯 ปรึกษาแผนกิจกรรม 🌈</h1>
+            <p>มาวางแผนกิจกรรมสุดแสนสนุกไปด้วยกัน! ✨</p>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Consultation Form -->
+            <div class="consultation-form">
+                <form id="consultationForm">
+                    <div class="form-group">
+                        <label for="name">🌟 ชื่อของคุณ</label>
+                        <input type="text" id="name" name="name" placeholder="บอกชื่อเล่นมาสิ~" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">🎂 อายุ</label>
+                        <select id="age" name="age" required>
+                            <option value="">เลือกช่วงอายุ</option>
+                            <option value="child">เด็กน้อย (5-12 ปี) 🧒</option>
+                            <option value="teen">วัยรุ่น (13-19 ปี) 🧑‍🎓</option>
+                            <option value="adult">ผู้ใหญ่ (20-40 ปี) 👨‍💼</option>
+                            <option value="senior">ผู้สูงอายุ (40+ ปี) 👨‍🦳</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>🎭 อารมณ์วันนี้เป็นยังไง?</label>
+                        <div class="emoji-selector">
+                            <button type="button" class="emoji-btn" data-mood="happy">😊</button>
+                            <button type="button" class="emoji-btn" data-mood="excited">🤩</button>
+                            <button type="button" class="emoji-btn" data-mood="tired">😴</button>
+                            <button type="button" class="emoji-btn" data-mood="stressed">😰</button>
+                            <button type="button" class="emoji-btn" data-mood="bored">😑</button>
+                            <button type="button" class="emoji-btn" data-mood="creative">🎨</button>
+                        </div>
+                        <input type="hidden" id="mood" name="mood">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timeAvailable">⏰ มีเวลาว่างเท่าไหร่?</label>
+                        <select id="timeAvailable" name="timeAvailable" required>
+                            <option value="">เลือกเวลา</option>
+                            <option value="30min">30 นาที ⚡</option>
+                            <option value="1hour">1 ชั่วโมง ⏰</option>
+                            <option value="2-3hours">2-3 ชั่วโมง 📚</option>
+                            <option value="halfday">ครึ่งวัน 🌅</option>
+                            <option value="fullday">ทั้งวัน 🌞</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interests">🎪 สิ่งที่อยากทำ/ความสนใจ</label>
+                        <textarea id="interests" name="interests" placeholder="เล่าให้ฟังสิ... ว่าอยากทำอะไรบ้าง หรือชอบอะไร เช่น อ่านหนังสือ เล่นเกม ทำอาหาร วาดรูป ฟังเพลง หรืออะไรก็ได้!" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goals">🎯 เป้าหมายที่อยากได้</label>
+                        <textarea id="goals" name="goals" placeholder="อยากให้วันนี้เป็นยังไง? เช่น อยากผ่อนคลาย อยากเรียนรู้สิ่งใหม่ อยากมีความสุข หรืออยากเพิ่มพลังงาน" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">ขอคำแนะนำเลย! 🎉</button>
+
+                    <div class="success-message" id="successMessage">
+                        🎊 ได้รับข้อมูลแล้ว! เดี๋ยวจะส่งแผนกิจกรรมสุดพิเศษให้ภายใน 5 นาที! 💫
+                    </div>
+                </form>
+            </div>
+
+            <!-- Activities Sidebar -->
+            <div class="activities-sidebar">
+                <h3>🎪 กิจกรรมยอดนิยม</h3>
+
+                <div class="activity-card" onclick="fillSuggestion('creative')">
+                    <h4>🎨 Creative Time</h4>
+                    <p>วาดรูป ทำงานฝีมือ DIY หรือถ่ายภาพสวยๆ</p>
+                </div>
+
+                <div class="activity-card" onclick="fillSuggestion('active')">
+                    <h4>💪 Active Mode</h4>
+                    <p>ออกกำลังกาย เต้น หรือเล่นกีฬาเบาๆ</p>
+                </div>
+
+                <div class="activity-card" onclick="fillSuggestion('learning')">
+                    <h4>📚 Learning Fun</h4>
+                    <p>อ่านหนังสือ ดูสารคดี หรือเรียนทักษะใหม่</p>
+                </div>
+
+                <div class="activity-card" onclick="fillSuggestion('social')">
+                    <h4>👥 Social Time</h4>
+                    <p>คุยกับเพื่อน เล่นเกมกลุ่ม หรือทำกิจกรรมร่วมกัน</p>
+                </div>
+
+                <div class="activity-card" onclick="fillSuggestion('relax')">
+                    <h4>🧘‍♀️ Chill Zone</h4>
+                    <p>ฟังเพลง ทำสมาธิ หรือนอนพักผ่อน</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="tips-section">
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <span class="emoji">🌅</span>
+                    <h4>เริ่มต้นวันใหม่</h4>
+                    <p>กิจกรรมยามเช้าช่วยให้มีพลังตลอดทั้งวัน!</p>
+                </div>
+                <div class="tip-card">
+                    <span class="emoji">⚡</span>
+                    <h4>พักสมอง</h4>
+                    <p>ทุก 25 นาที ควรหยุดพัก 5 นาทีเพื่อสมองสดชื่น</p>
+                </div>
+                <div class="tip-card">
+                    <span class="emoji">🎭</span>
+                    <h4>หลากหลายกิจกรรม</h4>
+                    <p>ผสมผสานกิจกรรมต่างๆ จะทำให้ชีวิตสีสันมากขึ้น</p>
+                </div>
+                <div class="tip-card">
+                    <span class="emoji">💖</span>
+                    <h4>ทำในสิ่งที่รัก</h4>
+                    <p>กิจกรรมที่ใช่จะทำให้เวลาผ่านไปอย่างมีความสุข</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Chat Button -->
+    <div class="floating-chat" onclick="openQuickChat()">💬</div>
+
+    <script>
+        // Emoji mood selector
+        document.querySelectorAll('.emoji-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                // Set hidden input value
+                document.getElementById('mood').value = this.dataset.mood;
+            });
+        });
+
+        // Form submission
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Show loading animation
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '🎯 กำลังสร้างแผนให้... ⏳';
+            submitBtn.disabled = true;
+
+            // Simulate processing time
+            setTimeout(() => {
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+
+                // Auto hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }, 2000);
+        });
+
+        // Activity card suggestions
+        function fillSuggestion(type) {
+            const suggestions = {
+                creative: 'วาดรูป ทำงานฝีมือ DIY ถ่ายภาพสวยๆ แต่งห้อง ทำการ์ด',
+                active: 'ออกกำลังกาย เต้นรำ โยคะ วิ่งเล่น เล่นกีฬา',
+                learning: 'อ่านหนังสือ ดูสารคดี เรียนภาษา ทำแบบฝึกหัด ค้นคว้า',
+                social: 'คุยกับเพื่อน เล่นเกมกลุ่ม ไปเที่ยว ทำอาหารร่วมกัน',
+                relax: 'ฟังเพลง ทำสมาธิ อ่านการ์ตูน ดูหนัง นอนพักผ่อน'
+            };
+
+            document.getElementById('interests').value = suggestions[type];
+            document.getElementById('interests').focus();
+
+            // Add sparkle effect
+            document.getElementById('interests').style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.6)';
+            setTimeout(() => {
+                document.getElementById('interests').style.boxShadow = '';
+            }, 2000);
+        }
+
+        // Quick chat function
+        function openQuickChat() {
+            const messages = [
+                '🌟 สวัสดี! ต้องการความช่วยเหลืออะไรมั้ย?',
+                '🎈 มีคำถามเกี่ยวกับกิจกรรมมั้ย?',
+                '✨ อยากได้คำแนะนำเพิ่มเติมมั้ย?',
+                '🎪 พร้อมช่วยคิดกิจกรรมสนุกๆ เสมอ!'
+            ];
+
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+        }
+
+        // Add floating animation to random elements
+        setInterval(() => {
+            const cards = document.querySelectorAll('.activity-card, .tip-card');
+            const randomCard = cards[Math.floor(Math.random() * cards.length)];
+            randomCard.style.transform += ' rotate(1deg)';
+
+            setTimeout(() => {
+                randomCard.style.transform = '';
+            }, 1000);
+        }, 5000);
+
+        // Interactive background click effect
+        document.body.addEventListener('click', function(e) {
+            if (e.target === document.body) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.fontSize = '2em';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.animation = 'sparkle 1s ease-out forwards';
+                sparkle.style.zIndex = '1000';
+
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => {
+                    document.body.removeChild(sparkle);
+                }, 1000);
+            }
+        });
+    </script>
+    <div style="margin: 16px 0;">
+        <a href="index.html" class="btn">⬅️ กลับไปหน้าแรก</a>
+    </div>
+
+</body>
+
+</html>

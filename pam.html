@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ฮีโร่งานบ้าน — ใบงานสุดมันส์</title>
+    <meta name="description" content="ใบงานการทำงานบ้านแบบเกมิฟาย มีเช็กลิสต์ คะแนน ดาว ป้ายรางวัล จับเวลาภารกิจ โหมดมืด และพิมพ์ได้" />
+    <a href="index.html">กลับไปหน้าแรก</a>
+
+    <style>
+         :root {
+            --bg: #0f172a;
+            /* slate-900 */
+            --panel: rgba(255, 255, 255, 0.08);
+            --text: #e2e8f0;
+            /* slate-200 */
+            --muted: #94a3b8;
+            /* slate-400 */
+            --brand: #22d3ee;
+            /* cyan-400 */
+            --accent: #a78bfa;
+            /* violet-400 */
+            --success: #34d399;
+            /* emerald-400 */
+            --warn: #f59e0b;
+            /* amber-500 */
+            --danger: #f472b6;
+            /* pink-400 */
+        }
+        
+        @media (prefers-color-scheme: light) {
+             :root {
+                --bg: #f8fafc;
+                /* slate-50 */
+                --panel: rgba(15, 23, 42, 0.06);
+                --text: #0f172a;
+                /* slate-900 */
+                --muted: #475569;
+                /* slate-600 */
+            }
+        }
+        
+        * {
+            box-sizing: border-box
+        }
+        
+        html,
+        body {
+            height: 100%
+        }
+        
+        body {
+            margin: 0;
+            font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", sans-serif;
+            color: var(--text);
+            background: radial-gradient(1200px 600px at 10% 0%, rgba(34, 211, 238, .25), transparent 60%), radial-gradient(900px 500px at 90% 10%, rgba(167, 139, 250, .2), transparent 60%), linear-gradient(180deg, rgba(15, 23, 42, .92), rgba(15, 23, 42, .92)), var(--bg);
+        }
+        
+        .wrap {
+            max-width: 1100px;
+            margin: clamp(12px, 4vw, 28px) auto;
+            padding: clamp(12px, 3vw, 24px);
+        }
+        /* Header */
+        
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(34, 211, 238, .25), rgba(167, 139, 250, .25));
+            border: 1px solid rgba(255, 255, 255, .18);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+        }
+        
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: clamp(26px, 3.4vw, 40px);
+            letter-spacing: .3px
+        }
+        
+        .hero p {
+            margin: 0;
+            color: var(--muted)
+        }
+        
+        .hero-controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 18px
+        }
+        
+        button,
+        .btn {
+            appearance: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            padding: 10px 16px;
+            border-radius: 16px;
+            transition: transform .08s ease, box-shadow .3s ease, background .3s;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .06));
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .2);
+            box-shadow: 0 10px 30px rgba(34, 211, 238, .15);
+        }
+        
+        button:hover {
+            transform: translateY(-1px)
+        }
+        
+        .btn-brand {
+            background: linear-gradient(135deg, var(--brand), var(--accent));
+            color: #001018
+        }
+        
+        .btn-outline {
+            background: transparent
+        }
+        /* Progress */
+        
+        .progress {
+            margin-top: 18px
+        }
+        
+        .bar {
+            height: 14px;
+            background: rgba(255, 255, 255, .12);
+            border-radius: 999px;
+            overflow: hidden
+        }
+        
+        .bar>i {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--brand), var(--success));
+            transition: width .5s ease
+        }
+        
+        .stats {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-top: 10px;
+            color: var(--muted);
+            flex-wrap: wrap
+        }
+        
+        .stats b {
+            color: var(--text)
+        }
+        /* Grid */
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+            margin-top: 22px
+        }
+        
+        .card {
+            grid-column: span 12;
+            border-radius: 22px;
+            padding: 18px 18px 16px;
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, .16);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+        }
+        
+        @media (min-width: 760px) {
+            .card.sm-6 {
+                grid-column: span 6
+            }
+            .card.sm-4 {
+                grid-column: span 4
+            }
+        }
+        
+        .card h2 {
+            margin: 4px 0 10px;
+            font-size: clamp(18px, 2.2vw, 24px)
+        }
+        
+        .card p.hint {
+            margin: 0 0 10px;
+            color: var(--muted);
+            font-size: .95rem
+        }
+        /* Checklist */
+        
+        .task {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            transition: background .2s
+        }
+        
+        .task:hover {
+            background: rgba(255, 255, 255, .06)
+        }
+        
+        .task input {
+            width: 1.15rem;
+            height: 1.15rem;
+            margin-top: 2px
+        }
+        
+        .task label {
+            flex: 1;
+            line-height: 1.35
+        }
+        
+        .task small {
+            color: var(--muted)
+        }
+        
+        .row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 8px
+        }
+        
+        .chip {
+            font-size: .82rem;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .16)
+        }
+        /* Timer */
+        
+        .timer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px
+        }
+        
+        .timer b {
+            font-variant-numeric: tabular-nums
+        }
+        /* Badges */
+        
+        .badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px dashed rgba(255, 255, 255, .25)
+        }
+        
+        .badge i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--brand)
+        }
+        
+        .badge.locked {
+            opacity: .5;
+            filter: grayscale(1)
+        }
+        /* Challenge modal */
+        
+        dialog {
+            border: none;
+            border-radius: 22px;
+            padding: 0;
+            max-width: 560px;
+            width: calc(100% - 24px);
+            background: var(--bg);
+            color: var(--text);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .5)
+        }
+        
+        dialog::backdrop {
+            background: rgba(0, 0, 0, .6)
+        }
+        
+        .modal {
+            padding: 20px 20px 16px
+        }
+        
+        .modal h3 {
+            margin: 0 0 6px
+        }
+        
+        .modal p {
+            margin: 0 0 14px;
+            color: var(--muted)
+        }
+        /* Print */
+        
+        @media print {
+            body {
+                background: #fff;
+                color: #000
+            }
+            .hero,
+            .card,
+            dialog {
+                box-shadow: none;
+                backdrop-filter: none
+            }
+            .hero-controls .btn-brand,
+            .btn-outline,
+            .confetti {
+                display: none!important
+            }
+            .bar>i {
+                background: #000
+            }
+            .chip,
+            .badge {
+                border-color: #000
+            }
+        }
+        /* Confetti */
+        
+        .confetti {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden
+        }
+        
+        .confetti i {
+            position: absolute;
+            width: 10px;
+            height: 14px;
+            background: linear-gradient(180deg, var(--brand), var(--accent));
+            opacity: .9;
+            transform: translateY(-10vh) rotate(0deg);
+            border-radius: 2px;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="hero" role="banner">
+            <h1>🧹 ฮีโร่งานบ้าน — ใบงานสุดมันส์</h1>
+            <p>ทำภารกิจ เก็บดาว ปลดล็อกป้ายรางวัล — สนุกเหมือนเล่นเกม!</p>
+            <div class="hero-controls">
+                <button class="btn btn-brand" id="newChallenge">สุ่มชาเลนจ์ ⚡</button>
+                <button class="btn btn-outline" id="printBtn" title="พิมพ์/บันทึกเป็น PDF">พิมพ์ใบงาน 🖨️</button>
+                <button class="btn btn-outline" id="resetBtn">รีเซ็ตความคืบหน้า ♻️</button>
+            </div>
+            <div class="progress" aria-label="ความคืบหน้า">
+                <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+                <div class="stats">
+                    <span>ทำเสร็จ: <b id="doneCount">0</b>/<span id="totalCount">0</span> งาน</span>
+                    <span>⭐ ดาว: <b id="stars">0</b></span>
+                    <span class="badges" id="badgeRow" aria-label="ป้ายรางวัล">
+            <span class="badge locked" data-need="3"><i></i>มือใหม่ไฟแรง (3 งาน)</span>
+                    <span class="badge locked" data-need="6"><i></i>โปรคลีน (6 งาน)</span>
+                    <span class="badge locked" data-need="10"><i></i>สุดยอดฮีโร่ (10 งาน)</span>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <main class="grid" id="grid" role="main">
+            <!-- ห้องนอน -->
+            <section class="card sm-6" data-group="bedroom">
+                <h2>🛏️ ภารกิจห้องนอนแสนสุข</h2>
+                <p class="hint">ติ๊กทีละข้อ จับเวลาให้เร็วขึ้นในรอบถัดไป</p>
+                <div class="list">
+                    <div class="task"><input type="checkbox" id="b1"><label for="b1">เก็บที่นอนให้ตึง</label></div>
+                    <div class="task"><input type="checkbox" id="b2"><label for="b2">จัดหมอน/ตุ๊กตาให้สวย</label></div>
+                    <div class="task"><input type="checkbox" id="b3"><label for="b3">กวาด/ถูพื้น</label></div>
+                </div>
+                <div class="timer"><button class="btn" data-timer>เริ่มจับเวลา ⏱️</button> <b data-clock>00:00</b></div>
+                <div class="row"><span class="chip">เคล็ดลับ: เปิดเพลงที่ชอบแล้วเริ่มเลย!</span></div>
+            </section>
+
+            <!-- ห้องครัว -->
+            <section class="card sm-6" data-group="kitchen">
+                <h2>🍳 ภารกิจห้องครัวฮีโร่</h2>
+                <p class="hint">ภารกิจเสร็จ = ได้ดาว ⭐ 1 ดวง</p>
+                <div class="list">
+                    <div class="task"><input type="checkbox" id="k1"><label for="k1">ล้างจานให้เกลี้ยง</label></div>
+                    <div class="task"><input type="checkbox" id="k2"><label for="k2">เช็ดโต๊ะ/เคาน์เตอร์</label></div>
+                    <div class="task"><input type="checkbox" id="k3"><label for="k3">จัดของเข้าตู้เย็นอย่างเป็นระเบียบ</label></div>
+                </div>
+                <div class="timer"><button class="btn" data-timer>เริ่มจับเวลา ⏱️</button> <b data-clock>00:00</b></div>
+                <div class="row"><span class="chip">ชาเลนจ์: ทำให้เสร็จใน 10 นาที!</span></div>
+            </section>
+
+            <!-- ห้องน้ำ -->
+            <section class="card sm-6" data-group="bathroom">
+                <h2>🧼 ซุปเปอร์คลีนห้องน้ำ</h2>
+                <p class="hint">ใส่ใจความปลอดภัย ใช้น้ำยาตามฉลาก</p>
+                <div class="list">
+                    <div class="task"><input type="checkbox" id="w1"><label for="w1">เช็ดอ่างล้างหน้า</label></div>
+                    <div class="task"><input type="checkbox" id="w2"><label for="w2">ล้างโถสุขภัณฑ์</label></div>
+                    <div class="task"><input type="checkbox" id="w3"><label for="w3">เก็บขยะและเปลี่ยนถุง</label></div>
+                </div>
+                <div class="timer"><button class="btn" data-timer>เริ่มจับเวลา ⏱️</button> <b data-clock>00:00</b></div>
+                <div class="row"><span class="chip">โบนัส: ทำไปฮัมเพลง 1 เพลง 🎵</span></div>
+            </section>
+
+            <!-- ห้องนั่งเล่น -->
+            <section class="card sm-6" data-group="living">
+                <h2>🛋️ ห้องนั่งเล่นสุดแจ่ม</h2>
+                <p class="hint">เก็บก่อน ดูหนังทีหลัง จะฟินกว่า!</p>
+                <div class="list">
+                    <div class="task"><input type="checkbox" id="l1"><label for="l1">กวาด/ถูพื้น</label></div>
+                    <div class="task"><input type="checkbox" id="l2"><label for="l2">เก็บหนังสือ/ของเล่นเข้าที่</label></div>
+                    <div class="task"><input type="checkbox" id="l3"><label for="l3">เช็ดโต๊ะและชั้นวาง</label></div>
+                </div>
+                <div class="timer"><button class="btn" data-timer>เริ่มจับเวลา ⏱️</button> <b data-clock>00:00</b></div>
+                <div class="row"><span class="chip">ชาเลนจ์: แข่ง 5 นาที กับคนในบ้าน</span></div>
+            </section>
+
+            <!-- พลังงานบวก -->
+            <section class="card sm-4" data-group="bonus">
+                <h2>✨ พลังงานบวก</h2>
+                <p class="hint">ทำดีโดยไม่ต้องมีใครบอก</p>
+                <div class="list">
+                    <div class="task"><input type="checkbox" id="p1"><label for="p1">ช่วยงานบ้าน 1 อย่างโดยอาสาเอง</label></div>
+                    <div class="task"><input type="checkbox" id="p2"><label for="p2">ยิ้มและขอบคุณคนร่วมทีมงานบ้าน</label></div>
+                    <div class="task"><input type="checkbox" id="p3"><label for="p3">เขียนสั้นๆ ว่ารู้สึกยังไงหลังทำเสร็จ</label></div>
+                </div>
+                <textarea id="feel" rows="4" style="width:100%; margin-top:8px; border-radius:12px; padding:10px; background:rgba(255,255,255,.07); color:inherit; border:1px solid rgba(255,255,255,.2)" placeholder="เขียนความรู้สึกที่นี่…"></textarea>
+            </section>
+
+            <!-- คู่มือสั้นๆ -->
+            <section class="card sm-8">
+                <h2>📘 วิธีเล่นให้มันส์</h2>
+                <ul style="margin:0; padding-left:18px; line-height:1.65">
+                    <li>ติ๊ก ✔️ งานที่ทำเสร็จ — ดาวจะเพิ่มอัตโนมัติ</li>
+                    <li>กด <b>สุ่มชาเลนจ์ ⚡</b> เพื่อรับภารกิจพิเศษระหว่างวัน</li>
+                    <li>ใช้ปุ่ม <b>เริ่มจับเวลา</b> ในแต่ละการ์ดเพื่อท้าทายความเร็ว</li>
+                    <li>สะสมงานครบตามเงื่อนไข จะปลดล็อก <b>ป้ายรางวัล</b> ด้านบน</li>
+                    <li>กด <b>พิมพ์ใบงาน</b> เพื่อบันทึกเป็น PDF/กระดาษ</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <div class="confetti" aria-hidden="true" id="confetti"></div>
+
+    <dialog id="dialog">
+        <div class="modal">
+            <h3>⚡ ชาเลนจ์วันนี้</h3>
+            <p id="challengeTxt">…</p>
+            <div class="row" style="justify-content:flex-end">
+                <button class="btn" id="closeDialog">ปิด</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script>
+        // ===== Utilities =====
+        const $ = (q, el = document) => el.querySelector(q);
+        const $$ = (q, el = document) => Array.from(el.querySelectorAll(q));
+
+        const storageKey = 'hero-housework-v1';
+        let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+        // Build task list refs
+        const allChecks = $$('input[type="checkbox"]');
+        $('#totalCount').textContent = allChecks.length;
+
+        // Restore state
+        allChecks.forEach(cb => cb.checked = !!state[cb.id]);
+        $('#feel').value = state.feel || '';
+
+        // Progress calc
+        function updateProgress() {
+            const done = allChecks.filter(c => c.checked).length;
+            const total = allChecks.length;
+            const pct = Math.round((done / total) * 100) || 0;
+            $('#doneCount').textContent = done;
+            $('#bar').style.width = pct + '%';
+            $('#stars').textContent = done; // 1 งาน = 1 ดาว
+            updateBadges(done);
+            if (done && done % 5 === 0) confettiBurst();
+        }
+
+        function updateBadges(done) {
+            $$('.badge').forEach(b => {
+                const need = +b.dataset.need;
+                if (done >= need) {
+                    b.classList.remove('locked');
+                    b.style.borderStyle = 'solid';
+                } else {
+                    b.classList.add('locked');
+                    b.style.borderStyle = 'dashed';
+                }
+            });
+        }
+
+        // Persist on change
+        allChecks.forEach(cb => cb.addEventListener('change', e => {
+            state[cb.id] = cb.checked;
+            localStorage.setItem(storageKey, JSON.stringify(state));
+            updateProgress();
+        }));
+        $('#feel').addEventListener('input', e => {
+            state.feel = e.target.value;
+            localStorage.setItem(storageKey, JSON.stringify(state));
+        });
+
+        // Timers per card
+        $$('.card [data-timer]').forEach(btn => {
+            let ticking = false;
+            let startAt = 0;
+            let tId;
+            const card = btn.closest('.card');
+            const clock = $('[data-clock]', card);
+
+            function fmt(ms) {
+                const s = Math.floor(ms / 1000);
+                const m = String(Math.floor(s / 60)).padStart(2, '0');
+                const ss = String(s % 60).padStart(2, '0');
+                return m + ':' + ss
+            }
+            btn.addEventListener('click', () => {
+                if (!ticking) {
+                    startAt = Date.now();
+                    ticking = true;
+                    btn.textContent = 'หยุดจับเวลา ⏹️';
+                    tId = setInterval(() => {
+                        clock.textContent = fmt(Date.now() - startAt)
+                    }, 200)
+                } else {
+                    clearInterval(tId);
+                    ticking = false;
+                    btn.textContent = 'เริ่มจับเวลา ⏱️';
+                    confettiBurst(30)
+                }
+            });
+        });
+
+        // Challenge modal
+        const challenges = [
+            'เก็บของใน 3 นาทีโดยใช้มือข้างไม่ถนัด',
+            'เปิดเพลงที่ชอบแล้วทำให้เสร็จก่อนเพลงจบ',
+            'ทำ 2 งานติดกันโดยไม่หยุด',
+            'หาสิ่งของที่ไม่ใช้แล้ว 3 ชิ้นเพื่อนำไปบริจาค',
+            'ทำความสะอาดจุดเล็กๆ ที่มักถูกมองข้าม 2 จุด',
+            'ชวนคนในบ้าน 1 คนมาช่วย แล้วบอกขอบคุณหลังจบ',
+            'ก่อน–หลัง: ถ่ายรูปเปรียบเทียบ แล้วให้คะแนนตัวเอง',
+            'จับเวลา 5 นาที เก็บให้มากที่สุดเท่าที่ทำได้',
+            'ทำงานไปยืดเหยียดตัว 3 ท่าเพื่อสุขภาพ',
+            'ปิดแจ้งเตือนมือถือ 15 นาที โฟกัสกับงานบ้าน'
+        ];
+        $('#newChallenge').addEventListener('click', () => {
+            const pick = challenges[Math.floor(Math.random() * challenges.length)];
+            $('#challengeTxt').textContent = pick;
+            $('#dialog').showModal();
+        });
+        $('#closeDialog').addEventListener('click', () => $('#dialog').close());
+
+        // Print & Reset
+        $('#printBtn').addEventListener('click', () => window.print());
+        $('#resetBtn').addEventListener('click', () => {
+            if (confirm('รีเซ็ตความคืบหน้าทั้งหมด?')) {
+                localStorage.removeItem(storageKey);
+                state = {};
+                location.reload();
+            }
+        });
+
+        // Confetti
+        function confettiBurst(amount = 60) {
+            const box = $('#confetti');
+            for (let i = 0; i < amount; i++) {
+                const p = document.createElement('i');
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animation = `fall ${1.5 + Math.random()*1.5}s linear forwards`;
+                p.style.opacity = 0.7 + Math.random() * 0.3;
+                p.style.transform = `translateY(-10vh) rotate(${Math.random()*180}deg)`;
+                box.appendChild(p);
+                setTimeout(() => p.remove(), 2200);
+            }
+        }
+
+        // Initial render
+        updateProgress();
+    </script>
+    <div style="margin: 16px 0;">
+        <a href="index.html" class="btn">⬅️ กลับไปหน้าแรก</a>
+    </div>
+
+</body>
+
+</html>

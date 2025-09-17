@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ฟิตอย่างฉลาด — ออกกำลังกายให้มีประสิทธิภาพสูงสุด</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+         :root {
+            --bg1: #0ea5e9;
+            --bg2: #22c55e;
+            --bg3: #f59e0b;
+            --txt: #2e2e2e;
+            --card: #ffffffea;
+            --muted: #6b7280;
+            --accent: #8b5cf6;
+            --danger: #ef4444;
+            --pink: #fb7185;
+        }
+        
+        * {
+            box-sizing: border-box
+        }
+        
+        html {
+            scroll-behavior: smooth
+        }
+        
+        body {
+            font-family: 'Mali', cursive;
+            margin: 0;
+            color: var(--txt);
+            background: linear-gradient(120deg, var(--bg1), var(--bg2), var(--bg3));
+            background-size: 300% 300%;
+            animation: bgShift 18s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        @keyframes bgShift {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        /* floating emojis */
+        
+        .float-emoji {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: .15;
+            font-size: 22px;
+            line-height: 3.4;
+            letter-spacing: 40px;
+            padding: 40px;
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+            50% {
+                transform: translateY(-16px)
+            }
+        }
+        
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px;
+            position: relative;
+            z-index: 1
+        }
+        /* NAV */
+        
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            backdrop-filter: blur(6px);
+            background: #ffffff80;
+            border-bottom: 1px solid #ffffff60;
+        }
+        
+        .nav .wrap {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between
+        }
+        
+        .brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #0f172a
+        }
+        
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px
+        }
+        
+        .links a {
+            text-decoration: none;
+            color: #111827;
+            background: #fff;
+            padding: 8px 14px;
+            border-radius: 999px;
+            box-shadow: 0 4px 10px #00000010;
+            transition: .25s;
+            font-weight: 600;
+            font-size: .95rem;
+        }
+        
+        .links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px #00000018
+        }
+        
+        .mode-toggle {
+            border: 0;
+            border-radius: 999px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            background: linear-gradient(45deg, #6366f1, #22c55e);
+            color: #fff;
+            box-shadow: 0 6px 16px #0000002a;
+        }
+        /* HERO */
+        
+        .hero {
+            margin-top: 18px;
+            border-radius: 26px;
+            padding: 32px;
+            background: linear-gradient(135deg, #ffffffee, #fffdf8ee);
+            box-shadow: 0 20px 50px #00000020;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2rem;
+            margin: 0 0 8px
+        }
+        
+        .hero p {
+            color: var(--muted);
+            margin: 0 0 12px
+        }
+        
+        .hero .cta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+        
+        .btn {
+            border: 0;
+            border-radius: 16px;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 10px 24px #00000018;
+            transition: .25s;
+            background: #0ea5e9;
+            color: #fff;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px)
+        }
+        
+        .btn.secondary {
+            background: #22c55e
+        }
+        
+        .stats {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 18px;
+            display: grid;
+            gap: 12px;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+        
+        .badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-weight: 800
+        }
+        
+        .b1 {
+            background: #0ea5e9
+        }
+        
+        .b2 {
+            background: #22c55e
+        }
+        
+        .b3 {
+            background: #f59e0b
+        }
+        /* SECTIONS */
+        
+        section {
+            margin: 26px 0
+        }
+        
+        h2 {
+            margin: 0 0 12px
+        }
+        
+        .grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+        }
+        
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 14px 30px #00000015;
+            transition: .3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-6px)
+        }
+        
+        .card .ribbon {
+            position: absolute;
+            right: -40px;
+            top: 14px;
+            background: linear-gradient(45deg, #fb7185, #f472b6);
+            color: #fff;
+            padding: 6px 60px;
+            transform: rotate(25deg);
+            font-weight: 700;
+            font-size: .85rem;
+        }
+        /* HIIT TIMER */
+        
+        .timer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+        
+        .dial {
+            width: 240px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent) var(--pct, 0%), #e5e7eb 0);
+            display: grid;
+            place-items: center;
+            margin: auto;
+            position: relative;
+        }
+        
+        .dial::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 18px;
+            font-weight: 700;
+            color: #4b5563;
+        }
+        
+        .timebig {
+            font-size: 2.4rem;
+            font-weight: 800
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center
+        }
+        
+        .chip {
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: #eef2ff;
+            font-weight: 700
+        }
+        
+        .row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+        
+        input,
+        select {
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            font-family: inherit
+        }
+        
+        .tiny {
+            font-size: .9rem;
+            color: var(--muted)
+        }
+        /* PLANNER */
+        
+        .planner .row {
+            align-items: flex-end
+        }
+        
+        .list {
+            display: grid;
+            gap: 10px
+        }
+        
+        .item {
+            background: #fff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+        
+        .item span {
+            font-weight: 700
+        }
+        
+        .del {
+            background: #fee2e2;
+            color: #b91c1c
+        }
+        /* PROGRESS */
+        
+        canvas {
+            background: #fff;
+            border-radius: 18px;
+            padding: 8px;
+            box-shadow: inset 0 0 0 1px #00000010
+        }
+        /* CALORIES */
+        
+        .calc .row>* {
+            flex: 1
+        }
+        /* FAB back to top */
+        
+        .fab {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(45deg, #8b5cf6, #22c55e);
+            color: #fff;
+            font-size: 24px;
+            box-shadow: 0 10px 24px #00000030;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .fab:hover {
+            transform: translateY(-3px)
+        }
+        /* DARK MODE */
+        
+        .dark body,
+        body.dark {
+            --txt: #e5e7eb;
+            --card: #0b1220ee;
+            --muted: #a3a3a3
+        }
+        
+        body.dark {
+            background: linear-gradient(120deg, #0f172a, #1e293b, #0b3b2e)
+        }
+        
+        body.dark .nav {
+            background: #0b1220cc;
+            border-color: #1f2937
+        }
+        
+        body.dark .links a {
+            background: #111827;
+            color: #e5e7eb
+        }
+        
+        body.dark .hero {
+            background: linear-gradient(135deg, #0b1220ee, #111827ee)
+        }
+        
+        body.dark .card {
+            background: #0b1220
+        }
+        
+        body.dark input,
+        body.dark select {
+            background: #0b1220;
+            color: #e5e7eb;
+            border-color: #334155
+        }
+    </style>
+</head>
+
+<body>
+    <div class="float-emoji">💪 🏃‍♂️ 🧘‍♀️ 🥇 🦵 🏋️‍♀️ 🚴‍♀️ 🤸‍♀️ 🥤 🥗</div>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="wrap">
+            <div class="brand">ฟิตอย่างฉลาด</div>
+            <div class="links">
+                <a href="#principles">หลักการ</a>
+                <a href="#hiit">HIIT Timer</a>
+                <a href="#planner">วางแผน</a>
+                <a href="#progress">ความก้าวหน้า</a>
+                <a href="#calories">คำนวณแคลฯ</a>
+            </div>
+            <button class="mode-toggle" id="modeBtn">🌙 โหมดมืด</button>
+        </div>
+    </nav>
+
+    <div class="wrap">
+        <!-- HERO -->
+        <section class="hero">
+            <div>
+                <h1>ออกกำลังกายให้ “ฉลาดขึ้น” ไม่ใช่ “หนักอย่างเดียว” ✨</h1>
+                <p>โฟกัสที่คุณภาพของเซสชัน การกู้คืนร่างกาย และความสม่ำเสมอ — นี่คือเครื่องมือครบชุดให้คุณเริ่มเลย!</p>
+                <div class="cta">
+                    <a class="btn" href="#hiit">เริ่มจับเวลา HIIT</a>
+                    <a class="btn secondary" href="#planner">วางแผนสัปดาห์นี้</a>
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="badge b1">⏱</div>
+                    <div><b>25–35 นาที</b>
+                        <div class="tiny">โซนคุณภาพต่อเซสชัน</div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="badge b2">💤</div>
+                    <div><b>7–9 ชม.</b>
+                        <div class="tiny">เวลานอนเพื่อฟื้นตัว</div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="badge b3">📈</div>
+                    <div><b>2–3 ครั้ง/สัปดาห์</b>
+                        <div class="tiny">วันฝึกหนัก (สลับเบา)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRINCIPLES -->
+        <section id="principles">
+            <h2>หลักการฝึกให้ได้ประสิทธิภาพสูงสุด</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="ribbon">PRO</div>
+                    <h3>Progressive Overload</h3>
+                    <p>เพิ่มน้ำหนัก/จำนวนครั้ง/เวลาอย่างค่อยเป็นค่อยไป (เช่น 5–10% ต่อ 1–2 สัปดาห์)</p>
+                </div>
+                <div class="card">
+                    <h3>Form มาก่อนปริมาณ</h3>
+                    <p>ท่าที่ถูกต้องลดการบาดเจ็บและทำให้กล้ามเนื้อเป้าหมายทำงานจริง</p>
+                </div>
+                <div class="card">
+                    <h3>80/20 คุณภาพ</h3>
+                    <p>80% โฟกัสพื้นฐาน (สควอต ดัน ดึง เดินเร็ว) 20% ค่อยเสริมเฉพาะทาง</p>
+                </div>
+                <div class="card">
+                    <h3>Recovery & โภชนาการ</h3>
+                    <p>โปรตีน 1.6–2.2 g/kg น้ำเพียงพอและพักให้พอ ผลลัพธ์จะพุ่ง</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HIIT TIMER -->
+        <section id="hiit">
+            <h2>⏱ HIIT Timer — ทำงานเป็นรอบอย่างมีโฟกัส</h2>
+            <div class="card timer">
+                <div style="text-align:center">
+                    <div id="dial" class="dial" data-label="สถานะ: พร้อม">
+                        <div class="timebig" id="time">00:30</div>
+                    </div>
+                    <div class="controls" style="margin-top:12px">
+                        <button class="btn" id="startBtn">▶️ เริ่ม</button>
+                        <button class="btn" id="pauseBtn">⏸ หยุด</button>
+                        <button class="btn" id="resetBtn">🔄 รีเซ็ต</button>
+                    </div>
+                    <div class="row" style="justify-content:center; margin-top:6px">
+                        <div class="chip" id="roundChip">รอบ 0/8</div>
+                        <div class="chip" id="phaseChip">โหมด: ทำงาน</div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="row">
+                        <div>
+                            <label>เวลาทำงาน (วินาที)</label><br/>
+                            <input type="number" id="workSec" min="5" value="30" />
+                        </div>
+                        <div>
+                            <label>เวลาพัก (วินาที)</label><br/>
+                            <input type="number" id="restSec" min="5" value="20" />
+                        </div>
+                        <div>
+                            <label>จำนวนรอบ</label><br/>
+                            <input type="number" id="rounds" min="1" value="8" />
+                        </div>
+                    </div>
+                    <p class="tiny" style="margin-top:8px">แนะนำ: เริ่ม 30/20 x 6–8 รอบ • วอร์มอัป/คูลดาวน์อย่างน้อย 5–10 นาที</p>
+                    <div class="row" style="margin-top:8px">
+                        <select id="preset">
+              <option value="">เลือกพรีเซ็ตด่วน</option>
+              <option value="20,10,8">Tabata 20/10 x 8</option>
+              <option value="30,30,10">สมดุล 30/30 x 10</option>
+              <option value="40,20,6">เร่งกำลัง 40/20 x 6</option>
+            </select>
+                        <button class="btn" id="applyPreset">ใช้พรีเซ็ต</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANNER -->
+        <section id="planner" class="planner">
+            <h2>🗓 วางแผนการฝึก (บันทึกอัตโนมัติ)</h2>
+            <div class="card">
+                <div class="row">
+                    <div>
+                        <label>วัน</label><br/>
+                        <select id="daySel">
+              <option>จันทร์</option><option>อังคาร</option><option>พุธ</option>
+              <option>พฤหัสบดี</option><option>ศุกร์</option><option>เสาร์</option><option>อาทิตย์</option>
+            </select>
+                    </div>
+                    <div>
+                        <label>ท่า/กิจกรรม</label><br/>
+                        <input id="exName" placeholder="เช่น สควอต เดินเร็ว" />
+                    </div>
+                    <div>
+                        <label>จำนวน/เวลา</label><br/>
+                        <input id="exVol" placeholder="เช่น 3x10 | 30 นาที" />
+                    </div>
+                    <button class="btn" id="addPlan">เพิ่ม</button>
+                </div>
+                <div class="list" id="planList" style="margin-top:12px"></div>
+            </div>
+        </section>
+
+        <!-- PROGRESS -->
+        <section id="progress">
+            <h2>📈 ความก้าวหน้า</h2>
+            <div class="card">
+                <div class="row">
+                    <div>
+                        <label>วันที่</label><br/>
+                        <input type="date" id="pd" />
+                    </div>
+                    <div>
+                        <label>คะแนนความเข้ม (RPE 1–10)</label><br/>
+                        <input type="number" id="pr" min="1" max="10" value="7" />
+                    </div>
+                    <button class="btn" id="addProg">บันทึก</button>
+                    <button class="btn del" id="clearProg">ล้างทั้งหมด</button>
+                </div>
+                <div style="margin-top:12px">
+                    <canvas id="chart" height="140"></canvas>
+                </div>
+                <p class="tiny">ทริก: รักษา RPE เฉลี่ย 6–8 ในวันฝึกหลัก และมีวันเบา/พักให้ร่างกายฟื้น</p>
+            </div>
+        </section>
+
+        <!-- CALORIES -->
+        <section id="calories" class="calc">
+            <h2>🔥 คำนวณแคลอรี่เผาผลาญ (ประมาณ)</h2>
+            <div class="card">
+                <div class="row">
+                    <div>
+                        <label>น้ำหนักตัว (กก.)</label><br/>
+                        <input type="number" id="kg" value="60" min="30" max="200" />
+                    </div>
+                    <div>
+                        <label>ระยะเวลา (นาที)</label><br/>
+                        <input type="number" id="min" value="30" min="5" max="300" />
+                    </div>
+                    <div>
+                        <label>กิจกรรม</label><br/>
+                        <select id="met">
+              <option value="3.5">เดินสบาย ๆ</option>
+              <option value="6">เดินเร็ว</option>
+              <option value="7.5">ปั่นจักรยานเบา</option>
+              <option value="8">วิ่งช้า</option>
+              <option value="10">HIIT ปานกลาง</option>
+              <option value="12.5">วิ่งเร็ว/HIIT เข้ม</option>
+            </select>
+                    </div>
+                    <button class="btn" id="calcBtn">คำนวณ</button>
+                </div>
+                <p id="calOut" style="font-weight:700; margin-top:10px"></p>
+                <p class="tiny">สูตร: แคล ≈ MET × น้ำหนัก(กก.) × เวลา(ชั่วโมง)</p>
+            </div>
+        </section>
+    </div>
+
+    <a class="fab" href="#top" title="กลับขึ้นบน">↑</a>
+
+    <script>
+        // โหมดมืด
+        const modeBtn = document.getElementById('modeBtn');
+        const setModeText = () => modeBtn.textContent = document.body.classList.contains('dark') ? '☀️ โหมดสว่าง' : '🌙 โหมดมืด';
+        modeBtn.onclick = () => {
+            document.body.classList.toggle('dark');
+            setModeText();
+            localStorage.setItem('dark', document.body.classList.contains('dark'));
+        };
+        if (localStorage.getItem('dark') === 'true') {
+            document.body.classList.add('dark');
+        }
+        setModeText();
+
+        /* ===== HIIT TIMER ===== */
+        const timeEl = document.getElementById('time');
+        const dial = document.getElementById('dial');
+        const roundChip = document.getElementById('roundChip');
+        const phaseChip = document.getElementById('phaseChip');
+        const workSec = document.getElementById('workSec');
+        const restSec = document.getElementById('restSec');
+        const rounds = document.getElementById('rounds');
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        let state = {
+            phase: 'work',
+            left: 0,
+            total: 0,
+            round: 0,
+            maxRound: 8,
+            running: false,
+            timer: null
+        };
+
+        function setFromInputs() {
+            state.maxRound = parseInt(rounds.value) || 8;
+            const sec = parseInt(workSec.value) || 30;
+            state.phase = 'work';
+            state.left = sec;
+            state.total = sec;
+            state.round = 0;
+            updateTimerUI();
+        }
+
+        function fmt(s) {
+            s = Math.max(0, Math.floor(s));
+            const m = String(Math.floor(s / 60)).padStart(2, '0');
+            const ss = String(s % 60).padStart(2, '0');
+            return `${m}:${ss}`;
+        }
+
+        function updateDial() {
+            const pct = 100 * (1 - (state.left / state.total || 0));
+            dial.style.setProperty('--pct', pct + '%');
+            dial.dataset.label = 'สถานะ: ' + (state.phase === 'work' ? 'ทำงาน 💥' : 'พัก 😌');
+        }
+
+        function updateTimerUI() {
+            timeEl.textContent = fmt(state.left);
+            roundChip.textContent = `รอบ ${state.round}/${state.maxRound}`;
+            phaseChip.textContent = `โหมด: ${state.phase==='work'?'ทำงาน':'พัก'}`;
+            updateDial();
+        }
+
+        function tick() {
+            if (!state.running) return;
+            state.left -= 1;
+            if (state.left <= 0) {
+                if (state.phase === 'work') {
+                    // สลับเป็นพัก
+                    state.phase = 'rest';
+                    state.left = parseInt(restSec.value) || 20;
+                    state.total = state.left;
+                } else {
+                    // จบรอบหนึ่ง
+                    state.round += 1;
+                    if (state.round >= state.maxRound) {
+                        stopTimer();
+                        return;
+                    }
+                    state.phase = 'work';
+                    state.left = parseInt(workSec.value) || 30;
+                    state.total = state.left;
+                }
+            }
+            updateTimerUI();
+        }
+
+        function startTimer() {
+            if (state.running) return;
+            state.running = true;
+            state.timer = setInterval(tick, 1000);
+        }
+
+        function pauseTimer() {
+            state.running = false;
+            clearInterval(state.timer);
+        }
+
+        function stopTimer() {
+            pauseTimer();
+            dial.dataset.label = 'เสร็จสิ้น 🎉';
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            setFromInputs();
+        }
+
+        startBtn.onclick = startTimer;
+        pauseBtn.onclick = pauseTimer;
+        resetBtn.onclick = resetTimer;
+        document.getElementById('applyPreset').onclick = () => {
+            const v = document.getElementById('preset').value;
+            if (!v) return;
+            const [w, r, n] = v.split(',');
+            workSec.value = w;
+            restSec.value = r;
+            rounds.value = n;
+            setFromInputs();
+        };
+        setFromInputs();
+
+        /* ===== PLANNER (localStorage) ===== */
+        const LSKEY_PLAN = 'smartfit_plan';
+        const daySel = document.getElementById('daySel');
+        const exName = document.getElementById('exName');
+        const exVol = document.getElementById('exVol');
+        const addPlan = document.getElementById('addPlan');
+        const planList = document.getElementById('planList');
+
+        let plan = JSON.parse(localStorage.getItem(LSKEY_PLAN) || '{}');
+
+        function renderPlan() {
+            planList.innerHTML = '';
+            Object.keys(plan).forEach(day => {
+                plan[day].forEach((it, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'item';
+                    div.innerHTML = `<span>${day}</span><div>${it.name} — <b>${it.vol}</b></div><button class="btn del" data-day="${day}" data-i="${i}">ลบ</button>`;
+                    planList.appendChild(div);
+                });
+            });
+            planList.querySelectorAll('button.del').forEach(b => {
+                b.onclick = () => {
+                    const d = b.dataset.day,
+                        i = b.dataset.i;
+                    plan[d].splice(i, 1);
+                    if (!plan[d].length) delete plan[d];
+                    savePlan();
+                    renderPlan();
+                };
+            });
+        }
+
+        function savePlan() {
+            localStorage.setItem(LSKEY_PLAN, JSON.stringify(plan));
+        }
+        addPlan.onclick = () => {
+            const d = daySel.value,
+                n = exName.value.trim(),
+                v = exVol.value.trim();
+            if (!n || !v) return alert('กรอกชื่อท่าและจำนวน/เวลาให้ครบ');
+            plan[d] = plan[d] || [];
+            plan[d].push({
+                name: n,
+                vol: v
+            });
+            savePlan();
+            exName.value = '';
+            exVol.value = '';
+            renderPlan();
+        };
+        renderPlan();
+
+        /* ===== PROGRESS (Chart.js) ===== */
+        const LSKEY_PROG = 'smartfit_progress';
+        const ctx = document.getElementById('chart').getContext('2d');
+        let prog = JSON.parse(localStorage.getItem(LSKEY_PROG) || '[]');
+
+        function sortProg() {
+            prog.sort((a, b) => new Date(a.d) - new Date(b.d));
+        }
+
+        function saveProg() {
+            localStorage.setItem(LSKEY_PROG, JSON.stringify(prog));
+        }
+
+        function chartData() {
+            sortProg();
+            return {
+                labels: prog.map(p => p.d),
+                datasets: [{
+                    label: 'RPE',
+                    data: prog.map(p => p.r),
+                    tension: .35,
+                    fill: true,
+                    borderColor: '#22c55e',
+                    backgroundColor: 'rgba(34,197,94,.15)'
+                }]
+            };
+        }
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: chartData(),
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 10,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+
+        document.getElementById('addProg').onclick = () => {
+            const d = document.getElementById('pd').value || new Date().toISOString().slice(0, 10);
+            const r = parseInt(document.getElementById('pr').value) || 7;
+            prog.push({
+                d,
+                r
+            });
+            saveProg();
+            chart.data = chartData();
+            chart.update();
+        };
+        document.getElementById('clearProg').onclick = () => {
+            if (confirm('ลบข้อมูลความก้าวหน้าทั้งหมด?')) {
+                prog = [];
+                saveProg();
+                chart.data = chartData();
+                chart.update();
+            }
+        };
+
+        /* ===== CALORIES ===== */
+        document.getElementById('calcBtn').onclick = () => {
+            const kg = +document.getElementById('kg').value,
+                min = +document.getElementById('min').value,
+                met = +document.getElementById('met').value;
+            const kcal = met * kg * (min / 60);
+            document.getElementById('calOut').textContent = `ประมาณเผาผลาญ ~ ${kcal.toFixed(0)} กิโลแคลอรี่`;
+        };
+    </script>
+    <div style="margin: 16px 0;">
+        <a href="index.html" class="btn">⬅️ กลับไปหน้าแรก</a>
+    </div>
+
+</body>
+
+</html>
